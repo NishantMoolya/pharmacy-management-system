@@ -44,7 +44,7 @@ export default function MedicineSearch() {
     };
 
     const handleBuyNowClick = async (medicine) => {
-        if (isLoggedIn) {
+        if (!isLoggedIn) {
             navigate('/dashboard/transactions/add', { state: { medicine } });
         } else {
             navigate('/login');

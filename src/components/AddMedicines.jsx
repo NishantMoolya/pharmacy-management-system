@@ -33,8 +33,8 @@ const AddMedicines = () => {
     const handleAddOrUpdateMedicine = async (e) => {
         e.preventDefault();
         const url = editing
-            ? `http://localhost:3000/medicines/${editId}`
-            : 'http://localhost:3000/medicines';
+            ? `http://localhost:3000/api/medicines/${editId}`
+            : 'http://localhost:3000/api/medicines';
         const method = editing ? 'PUT' : 'POST';
 
         try {
@@ -76,7 +76,7 @@ const AddMedicines = () => {
 
     const handleDeleteMedicine = async (id) => {
         try {
-            const response = await fetch(`http://localhost:3000/medicines/${id}`, {
+            const response = await fetch(`http://localhost:3000/api/medicines/${id}`, {
                 method: 'DELETE'
             });
             if (response.ok) {

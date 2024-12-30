@@ -10,6 +10,7 @@ const medicinesRoutes = require('./routes/medicines');
 const transactionRoutes = require('./routes/transactions');
 const salesRoutes = require('./routes/sales');
 const contactRoutes = require('./routes/contact');
+const userRouter = require('./routes/user');
 
 // Middleware
 app.use(cors({
@@ -30,6 +31,11 @@ app.use('/api/medicines', medicinesRoutes);
 app.use('/api/transactions', transactionRoutes);
 app.use('/api/sales', salesRoutes);
 app.use('/api/contact', contactRoutes);
+app.use('/api', userRouter);
+
+app.get('/', (req, res) => {
+    res.send('Hello World!');
+});
 
 // Start the server
 const PORT = process.env.PORT || 3000;

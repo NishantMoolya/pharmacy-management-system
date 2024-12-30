@@ -13,6 +13,8 @@ export default function TransactionList() {
                 const response = await fetch('http://localhost:3000/api/transactions');
                 const data = await response.json();
                 setTransactions(data);
+                console.log(data);
+                
             } catch (error) {
                 console.error('Failed to fetch transactions:', error);
             }
@@ -22,6 +24,7 @@ export default function TransactionList() {
     }, []);
 
     const patientTotals = transactions.reduce((acc, transaction) => {
+        console.log(acc,transaction);
         if (!acc[transaction.patient_id]) {
             acc[transaction.patient_id] = {
                 total: 0,
@@ -36,6 +39,8 @@ export default function TransactionList() {
             price: transaction.price / transaction.quantity,
             patient_id: transaction.patient_id
         });
+        console.log(acc);
+        
         return acc;
     }, {});
 
@@ -49,7 +54,7 @@ export default function TransactionList() {
                     </div>
                     <div className="text-lg px-5 pt-6 pb-3 flex w-fit h-fit gap-2">
                         <p className="text-gray-700 text-lg font-bold">Total Spending: </p>
-                        <p className="text-green-500 text-lg font-bold">${total.toFixed(2)}</p>
+                        <p className="text-green-500 text-lg font-bold">${parseInt(total).toFixed(2)}</p>
                     </div>
                     <div className='text-sm px-5 pt-0 pb-3 w-full h-fit gap-2 font-semibold text-end justify-end flex text-gray-600'>
                         <Link to={`/dashboard/transactions/${patient_id}`}>

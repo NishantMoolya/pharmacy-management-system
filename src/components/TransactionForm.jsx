@@ -7,13 +7,13 @@ const TransactionForm = () => {
     const navigate = useNavigate();
     const medicine = location.state?.medicine || {};
 
-    const [medicineName, setMedicineName] = useState(medicine.medicine || '');
+    const [medicineName, setMedicineName] = useState(medicine.medicine || 'Paracetamol');
     const [quantity, setQuantity] = useState(1);
     const [patientName, setPatientName] = useState('');
     const [patientID, setPatientID] = useState('');
     const [doctorName, setDoctorName] = useState('');
 
-    const totalPrice = (medicine.price || 0) * quantity;
+    const totalPrice = (medicine.price || 20) * quantity;
 
     const handlePurchase = async () => {
         if (quantity > 0 && patientName && patientID && doctorName && medicineName) {
@@ -60,11 +60,11 @@ const TransactionForm = () => {
                         <div className="flex-1 flex-col justify-center items-center p-8 bg-white rounded-md shadow-md pt-[50px]">
                             <div className="mb-6">
                                 <label htmlFor="medicineName" className="block mb-2 font-semibold">Medicine Name:</label>
-                                <input id="medicineName" type="text" value={medicineName} onChange={(e) => setMedicineName(e.target.value)} className="border border-gray-300 p-2 rounded-lg w-full" readOnly />
+                                <input id="medicineName" type="text" value={medicineName} onChange={(e) => setMedicineName(e.target.value)} className="border border-gray-300 p-2 rounded-lg w-full" />
                             </div>
                             <div className="mb-6">
-                                <p><strong>Dosage:</strong> {medicine.dosage || 'N/A'}</p>
-                                <p><strong>Price:</strong> ${medicine.price ? medicine.price : 'N/A'}</p>
+                                <p><strong>Dosage:</strong> {medicine.dosage || '1'}</p>
+                                <p><strong>Price:</strong> ${medicine.price ? medicine.price : '20'}</p>
                                 <p><strong>Description:</strong> {medicine.description || 'No description available'}</p>
                             </div>
                             <div className="mb-6">

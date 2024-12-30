@@ -3,7 +3,7 @@ const express = require('express');
 const router = express.Router();
 const salesController = require('../controllers/salesController');
 
-router.get('/sales', (req, res, next) => {
+router.get('/', (req, res, next) => {
     next();
 }, salesController.getSalesData);
 
